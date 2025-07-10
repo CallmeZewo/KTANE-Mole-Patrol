@@ -1,0 +1,10 @@
+{
+  "name": "MolePatrol-Editor",
+  "references": [
+    "MolePatrol"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
