@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 46165485aa3a5ae4d9dc1fa5a3a736f3
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Ring
+    100004: BackplateEdges
+    100006: BackplateFace
+    100008: Body
+    100010: HandL
+    100012: HandR
+    100014: Hole
+    100016: LookSide
+    100018: Module Backplate
+    100020: SequenceButton
+    400000: //RootNode
+    400002: Ring
+    400004: BackplateEdges
+    400006: BackplateFace
+    400008: Body
+    400010: HandL
+    400012: HandR
+    400014: Hole
+    400016: LookSide
+    400018: Module Backplate
+    400020: SequenceButton
+    2100000: No Name
+    2100002: FurDark
+    2100004: FurBright
+    2100006: Eyes
+    2100008: Nose
+    2100010: Component_PuzzleBack_mat
+    2300000: //RootNode
+    2300002: Ring
+    2300004: BackplateEdges
+    2300006: BackplateFace
+    2300008: Body
+    2300010: HandL
+    2300012: HandR
+    2300014: Hole
+    2300016: LookSide
+    2300018: SequenceButton
+    3300000: //RootNode
+    3300002: Ring
+    3300004: BackplateEdges
+    3300006: BackplateFace
+    3300008: Body
+    3300010: HandL
+    3300012: HandR
+    3300014: Hole
+    3300016: LookSide
+    3300018: SequenceButton
+    4300000: Hole
+    4300002: Ring
+    4300004: Body
+    4300006: HandL
+    4300008: HandR
+    4300010: LookSide
+    4300012: BackplateEdges
+    4300014: BackplateFace
+    4300016: SequenceButton
+    11100000: //RootNode
+    13700000: HandL
+    13700002: LookSide
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: ad9fb41dcfe99024e9f9d0c477f58cec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FurBright
+    second: {fileID: 2100000, guid: 8a4a16d05a09c86428283c5abd8720ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FurDark
+    second: {fileID: 2100000, guid: db6e3a8329ee5384ca199e13e7516d52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 8a1bc008b50515a40a0f921cbd37fb52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nose
+    second: {fileID: 2100000, guid: 76efb417030cc6244b9d6536dcdea990, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
