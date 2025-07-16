@@ -11,6 +11,7 @@ using UnityEditor.UI;
 using JetBrains.Annotations;
 using UnityEditor;
 using static MolePatrol;
+using HarmonyLib;
 
 public class MolePatrol : MonoBehaviour
 {
@@ -30,11 +31,12 @@ public class MolePatrol : MonoBehaviour
     List<int> currentlySelectedMoleByIndex = new List<int>();
     public KMSelectable[] Buttons;
     List<Mole> MoleList = new List<Mole>();
-    List<int> MoleSequence;
+    List<int> MoleSequence = new List<int>();
     public List<GameObject> MoleGObjects;
     public Material[] materials = new Material[6];
     Dictionary<Positions, MaterialPair> MoleColorDictionary;
     Phases currentPhase = Phases.Sequence1;
+    List<Tuple> MoleSequenceCoordinates = new List<Tuple>();
 
     public enum Positions { TL, T, TR, R, DR, D, DL, L}
     public enum ColorNames { Red, Green, Blue, Magenta, Yellow, Cyan}
@@ -51,7 +53,15 @@ public class MolePatrol : MonoBehaviour
             SecMat = secMat;
         }
     }
-
+    public class Tuple
+    {
+        public int X;
+        public int Y;
+        public Tuple(int x, int y)
+        {
+            X = x; Y = y;
+        }
+    }
     public class Mole
     {
         public Positions CurrentPosition;
@@ -246,7 +256,62 @@ public class MolePatrol : MonoBehaviour
             MoleList.Add(new Mole(MoleGObjects[i], MoleColorDictionary.ElementAt(i).Key, MoleColorDictionary.ElementAt(i).Value));
 
         //Generate sequence of 5
-        MoleSequence = Enumerable.Range(0, MoleList.Count).OrderBy(_ => Rnd.value).Take(5).ToList();
+        List<int> ring = Enumerable.Range(0, 8).ToList();
+        System.Random rand = new System.Random();
+
+        while (MoleSequence.Count < 5)
+        {
+            var last = MoleSequence.Count > 0 ? MoleSequence.Last() : -1;
+
+            var candidates = ring.Where(i =>
+                MoleSequence.Count == 0 || (i != (last + 7) % 8 && i != (last + 1) % 8)).ToList();
+
+            if (candidates.Count == 0)
+            {
+                MoleSequence.Clear();
+                ring = Enumerable.Range(0, 8).ToList();
+                continue;
+            }
+
+            int next = candidates[rand.Next(candidates.Count)];
+            MoleSequence.Add(next);
+            ring.Remove(next);
+        }
+
+        foreach (int i in MoleSequence)
+        {
+            Tuple newCoordinates = null;
+            switch (MoleList[i].CurrentPosition)
+            {
+                case Positions.TL:
+                    newCoordinates = new Tuple(-1, 1);
+                    break;
+                case Positions.T:
+                    newCoordinates = new Tuple(0, 1);
+                    break;
+                case Positions.TR:
+                    newCoordinates = new Tuple(1, 1);
+                    break;
+                case Positions.R:
+                    newCoordinates = new Tuple(1, 0);
+                    break;
+                case Positions.DR:
+                    newCoordinates = new Tuple(1, -1);
+                    break;
+                case Positions.D:
+                    newCoordinates = new Tuple(0, -1);
+                    break;
+                case Positions.DL:
+                    newCoordinates = new Tuple(-1, -1);
+                    break;
+                case Positions.L:
+                    newCoordinates = new Tuple(-1, 0);
+                    break;
+            }
+            MoleSequenceCoordinates.Add(newCoordinates);
+        }
+        int lol = GetCrossingAmount(MoleSequenceCoordinates);
+        Debug.Log(lol);
     }
 
     void Update()
@@ -328,6 +393,33 @@ public class MolePatrol : MonoBehaviour
             StopCoroutine(mole.ActiveMovement);
 
         mole.ActiveMovement = StartCoroutine(MoveMole(mole, target, 0.25f));
+    }
+
+    int GetCrossingAmount(List<Tuple> points)
+    {
+        int count = 0;
+
+        if (DoEdgesIntersect(points[0], points[1], points[2], points[3])) count++; // S0 vs S2
+        if (DoEdgesIntersect(points[0], points[1], points[3], points[4])) count++; // S0 vs S3
+        if (DoEdgesIntersect(points[1], points[2], points[3], points[4])) count++; // S1 vs S3
+
+        return count;
+    }
+
+    bool DoEdgesIntersect(Tuple a1, Tuple a2, Tuple b1, Tuple b2)
+    {
+        int d1 = Direction(a1, a2, b1);
+        int d2 = Direction(a1, a2, b2);
+        int d3 = Direction(b1, b2, a1);
+        int d4 = Direction(b1, b2, a2);
+
+        return (d1 > 0 && d2 < 0 || d1 < 0 && d2 > 0) &&
+               (d3 > 0 && d4 < 0 || d3 < 0 && d4 > 0);
+    }
+
+    int Direction(Tuple p0, Tuple p1, Tuple p2)
+    {
+        return (p2.X - p0.X) * (p1.Y - p0.Y) - (p2.Y - p0.Y) * (p1.X - p0.X);
     }
 
     MaterialPair GetRandomMaterialPair()
