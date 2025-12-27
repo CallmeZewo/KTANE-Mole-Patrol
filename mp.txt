@@ -1,0 +1,28 @@
+Mole Patrol (3 Stages?)
+
+Starting sequence of 5 consisting of
+
+ - Position
+ - Main color
+ - Sub color
+
+Moles can only appear once each in the sequence. Neighboring moles in the List cant be next to each other in the "grid"
+
+First record sequence (ex. in [pos, main, sub] ):
+
+ - T: Blue, Green
+ - DL: Red, Yellow
+ - D: Cyan, Red
+ - R: Red, Red
+ - TR:Magenta, Cyan
+
+After watching the sequence at least once you are allowed to press the stone in the middle,
+which serves as a confirm/submit button to either confirm you are ready for input or submitting an input.
+
+You will be able to see all moles pop up after pressing the stone. Upon clicking a mole it raises its paw and
+lowers it if it's clicked again. If you click a different mole while one has its paw up, they switch positions.
+
+Draw a line in the form of the sequence of 5 moles and count the intersections,
+intersections only count when they clearly cross each other, no overlapping multiple point or only meeting at a end/start pont.
+
+Find how often Blue, Red and Green are used in the colors of the moles in the sequence (main and sub) and
